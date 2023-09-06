@@ -14,3 +14,10 @@ router.get(
     "1.0.0": wrapError(HamburguesasCrll.getCarnes),
   })
 );
+
+router.get(
+  "/checfb/hamburguesas",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getHamburguesasByChefB),
+  })
+);
