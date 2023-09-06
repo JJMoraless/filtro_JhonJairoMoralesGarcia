@@ -14,3 +14,10 @@ router.get(
     "1.0.0": wrapError(IngredientesCrll.getStockless40),
   })
 );
+
+router.get(
+  "/increment",
+  version({
+    "1.0.0": wrapError(IngredientesCrll.increment15),
+  })
+);

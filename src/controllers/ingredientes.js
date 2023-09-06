@@ -17,11 +17,13 @@ export class IngredientesCrll {
     resOk(res, { ingredientes_menos_40_stock: ingredientesFound });
   }
 
-  static async update(req, res) {
-    resOk(res, { msg: "funciona 2" });
-  }
-
-  static async delete(req, res) {
-    resOk(res, { msg: "funciona" });
+  // 4
+  static async increment15(req, res) {
+    const ingredientesUpdated = await Ingrediente.updateMany(
+      {},
+      { $inc: { precio: 1.5 } }
+    );
+    const ingredientesFound = await Ingrediente.find().toArray();
+    resOk(res, { ingredientesUpdated: ingredientesFound });
   }
 }
