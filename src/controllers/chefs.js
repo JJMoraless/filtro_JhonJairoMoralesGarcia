@@ -26,8 +26,17 @@ export class HamburguesasCrll {
     resOk(res, { chefs: chefsFound });
   }
 
-  static async update(req, res) {
-    resOk(res, { msg: "funciona 2" });
+  static async putEspecialidad(req, res) {
+    const chefUpdated = await Chef.updateOne(
+      {
+        nombre: "Checfb",
+      },
+      {
+        $set: { especialidad: "Cocina Internacional" },
+      }
+    );
+
+    resOk(res, { chefUpdated });
   }
 
   static async delete(req, res) {

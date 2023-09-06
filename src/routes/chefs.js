@@ -21,3 +21,10 @@ router.get(
     "1.0.0": wrapError(HamburguesasCrll.getHamburguesasByChefB),
   })
 );
+
+router.put(
+  "/especialidad/change/chefc",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.putEspecialidad),
+  })
+);
