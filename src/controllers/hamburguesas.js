@@ -17,8 +17,16 @@ export class HamburguesasCrll {
     resOk(res, { hamburguesas });
   }
 
-  static async update(req, res) {
-    resOk(res, { msg: "funciona 2" });
+  static async getCategorias(req, res) {
+    const categoriasFound = await Hamburguesa.aggregate([
+      {
+        $project: {
+          categoria: 1,
+        },
+      },
+    ]).toArray();
+
+    resOk(res, { categorias: categoriasFound });
   }
 
   static async delete(req, res) {

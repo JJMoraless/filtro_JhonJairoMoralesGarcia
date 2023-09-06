@@ -14,3 +14,12 @@ router.get(
     "1.0.0": wrapError(HamburguesasCrll.getVegetarianas),
   })
 );
+
+
+
+router.get(
+  "/categorias",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getCategorias),
+  })
+);
