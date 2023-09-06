@@ -26,4 +26,10 @@ export class IngredientesCrll {
     const ingredientesFound = await Ingrediente.find().toArray();
     resOk(res, { ingredientesUpdated: ingredientesFound });
   }
+
+  // 7
+  static async deleteStock0(req, res) {
+    const ingredientesDelete = await Ingrediente.deleteMany({ stock: 0 });
+    resOk(res, { ingredientesDelete });
+  }
 }

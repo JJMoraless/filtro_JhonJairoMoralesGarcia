@@ -21,3 +21,10 @@ router.get(
     "1.0.0": wrapError(IngredientesCrll.increment15),
   })
 );
+
+router.delete(
+  "/deleteStock0",
+  version({
+    "1.0.0": wrapError(IngredientesCrll.deleteStock0),
+  })
+);
