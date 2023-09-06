@@ -30,12 +30,25 @@ export class HamburguesasCrll {
   }
 
   static async putIngredienteClasica(req, res) {
-    const nuevoIngrediente = await Hamburguesa.updateOne(
+    const nuevoIngrediente = await Hamburguesa.updateMany(
       { "categoria.nombre": "clasica" },
       {
-        $push: { ingredientes: "papas" },
+        $push: {
+          ingredientes: {
+            nombre: "papas",
+            precio: 100,
+          },
+        },
       }
     );
+
     resOk(res, { nuevoIngrediente });
+  }
+
+  static async getIntegral(req, res) {
+    const hamburguesas = await Hamburguesa.find({
+      "ingredientes.nombre": "Pan integral",
+    }).toArray();
+    resOk(res, { hamburguesas });
   }
 }

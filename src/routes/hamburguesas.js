@@ -28,3 +28,11 @@ router.put(
     "1.0.0": wrapError(HamburguesasCrll.putIngredienteClasica),
   })
 );
+
+
+router.get(
+  "/ingredientes/pan_integral",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getIntegral),
+  })
+);
