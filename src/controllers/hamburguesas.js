@@ -11,7 +11,7 @@ export class HamburguesasCrll {
   // 2
   static async getVegetarianas(req, res) {
     const hamburguesas = await Hamburguesa.find({
-      categoria: "Vegetariana",
+      "categoria.nombre": "Vegetariana",
     }).toArray();
 
     resOk(res, { hamburguesas });
@@ -29,7 +29,13 @@ export class HamburguesasCrll {
     resOk(res, { categorias: categoriasFound });
   }
 
-  static async delete(req, res) {
-    resOk(res, { msg: "funciona" });
+  static async putIngredienteClasica(req, res) {
+    const nuevoIngrediente = await Hamburguesa.updateOne(
+      { "categoria.nombre": "clasica" },
+      {
+        $push: { ingredientes: "papas" },
+      }
+    );
+    resOk(res, { nuevoIngrediente });
   }
 }

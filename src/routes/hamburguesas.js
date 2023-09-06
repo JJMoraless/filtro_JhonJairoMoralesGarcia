@@ -15,11 +15,16 @@ router.get(
   })
 );
 
-
-
 router.get(
   "/categorias",
   version({
     "1.0.0": wrapError(HamburguesasCrll.getCategorias),
+  })
+);
+
+router.put(
+  "/clasica/ingredientes",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.putIngredienteClasica),
   })
 );
