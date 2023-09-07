@@ -12,13 +12,13 @@ export class UserCrll {
     userData.password = await hash(userData.password, 10);
 
     // checkear si existe email: checkEmail
-    // const checkEmail = await User
+    const checkEmail = await User.findOne({ email: userData.email });
     if (checkEmail) {
       throw new ClientError("email is already in use");
     }
 
-    // crear usuario 
-    // const userCreated = await User
+    // crear usuario
+    const userCreated = await User.insertOne(userData);
     resOk(res, { user_create: userCreated });
   }
 
