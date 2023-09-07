@@ -1,27 +1,210 @@
+use("filtroHamburguesa_JhonJairoMorales");
+db.getCollection("ingredientes").insertMany([
+  {
+    nombre: "lechuga",
+    stock: 10,
+    categoria: {
+      nombre: "Vegetariana",
+      descripccion: "saludable uwu",
+    },
+    precio: 2000,
+    descripccion: "clasico",
+  },
+  {
+    nombre: "pan",
+    stock: 10,
+    categoria: {
+      nombre: "cereal",
+      descripccion: "no saludable :c",
+    },
+    precio: 1000,
+  },
+  {
+    nombre: "salchichon",
+    stock: 10,
+    categoria: {
+      nombre: "cereal",
+      descripccion: "gourmet",
+    },
+    precio: 100,
+  },
+]);
 
+use("filtroHamburguesa_JhonJairoMorales");
+db.getCollection("chefs").insertMany([
+  {
+    nombre: "Checfb",
+    especialidad: "Carnes",
+  },
+  {
+    nombre: "Checfb",
+    especialidad: "Cocina Asiática",
+  },
+  {
+    nombre: "Checfb",
+    especialidad: "Cocina Vegetariana",
+  },
+]);
 
+use("filtroHamburguesa_JhonJairoMorales");
+db.getCollection("hamburguesas").insertMany([
+  {
+    chef: "Checfb",
+    ingredientes: [
+      {
+        nombre: "lechuga",
+        precio: 1000,
+      },
+      {
+        nombre: "Pan",
+        precio: 1000,
+      },
+      {
+        nombre: "Pan integral",
+        precio: 1000,
+      },
+    ],
+    precio: 100,
+    categoria: {
+      nombre: "gourmet",
+      descripccion: "no saludable :c",
+    },
+  },
+  {
+    chef: "Gourmet",
+    ingredientes: [
+      {
+        nombre: "lechuga",
+        precio: 1000,
+      },
+      {
+        nombre: "Pan",
+        precio: 1000,
+      },
+      {
+        nombre: "Pan integral",
+        precio: 1000,
+      },
+    ],
+    precio: 100,
+    categoria: {
+      nombre: "tapa arterias 2000",
+      descripccion: "no saludable :c",
+    },
+  },
+  {
+    chef: "Gourmet",
+    ingredientes: [
+      {
+        nombre: "lechuga",
+        precio: 1000,
+      },
+      {
+        nombre: "Pan",
+        precio: 1000,
+      },
+      {
+        nombre: "Pan integral",
+        precio: 1000,
+      },
+    ],
+    precio: 100,
+    categoria: {
+      nombre: "Vegetariana",
+      descripccion: "saludable uwu",
+    },
+  },
+]);
 
+// -------------------------------------
 
+use("filtroHamburguesa_JhonJairoMorales");
+db.createCollection("ingredientes", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      properties: {
+        nombre: {
+          bsonType: "string",
+          description: "nombre del ingrediente",
+        },
+        stock: {
+          bsonType: "int",
+          description: "stock de producto",
+        },
+        categoria: {
+          bsonType: "object",
+          properties: {
+            nombre: {
+              bsonType: "string",
+              description: "nombre de la categoria",
+            },
+            descripccion: {
+              bsonType: "string",
+              description: "descripccion de la categoria",
+            },
+          },
+        },
+        precio: {
+          bsonType: "int",
+          description: "precio del ingrediente",
+        },
+        descripccion: {
+          bsonType: "string",
+          description: "descripccion del ingrediente",
+        },
+      },
+    },
+  },
+});
 
+use("filtroHamburguesa_JhonJairoMorales");
+db.createCollection("hamburguesas", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      properties: {
+        chef: {
+          bsonType: "string",
+          description: "chef que hizo la hamburguesa",
+        },
+        precio: {
+          bsonType: "int",
+          description: "precio de la hamburguesa",
+        },
+        categoria: {
+          bsonType: "object",
+          properties: {
+            nombre: {
+              bsonType: "string",
+              description: "nombre de la categoria",
+            },
+            descripccion: {
+              bsonType: "string",
+              description: "descripccion de la categoria",
+            },
+          },
+        },
+      },
+    },
+  },
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+use("filtroHamburguesa_JhonJairoMorales");
+db.createCollection("chefs", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      properties: {
+        nombre: {
+          bsonType: "string",
+          description: "nombre del chef",
+        },
+        especialidad: {
+          bsonType: "string",
+          description: "especialidad del chef",
+        },
+      },
+    },
+  },
+});
