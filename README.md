@@ -1,3 +1,24 @@
+## Filtro mongodb:  M3 jhon jairo morales garcia
+
+- filtro campus node mongodb
+- antes de usar debe instalar dependencias con ``` npm i```
+
+- debe ejcutar el proyecto ``` npm run dev```
+
+
+- #### (solo los usuarios registrados con rol admin pueden usar los endpoints los demas roles no)
+
+- #### si algun endpoint no le bota los datos es por que hay ensertar mas documentos por favor ingreselos para que se peuda ver el filtrado y las consultas de mejor manera
+
+- antes de usar cualquier endpoint debe registrar un usuario en este endpoint ``` localhost:1234/users ``` con su password, email y rol. debe recordar la contraseña ya que se encripta cuando se guarda a la base de datos y no podra verla desde ahi 
+
+-despues debe autenticarse y recibir el token en este endpoint 
+``` localhost:1234/auth/login ```
+
+
+
+
+
 ## Endpoints Documentacion
 
 ```JSON
@@ -165,7 +186,6 @@
                 "raw": "{\n  \"email\": \"adasd@gmail.com\",\n  \"password\": \"123456\"\n}",
                 "form": []
             },
-            "tests": []
         }
     ]
 }
