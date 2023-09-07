@@ -94,6 +94,13 @@ router.get(
   })
 );
 
+router.get(
+  "/promedioCategoria",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getPromedioCategoria),
+  })
+);
+
 router.put(
   "/pepinillosToClasica",
   version({

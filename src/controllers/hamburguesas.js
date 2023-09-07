@@ -146,4 +146,17 @@ export class HamburguesasCrll {
     }).toArray();
     resOk(res, { ingredientesFound });
   }
+
+
+  static async getPromedioCategoria(req, res) {
+    const cheftInsert = await Hamburguesa.aggregate([
+      {
+        $group: {
+          _id: "$categoria.nombre",
+          promedio_precio: { $avg: "$precio" },
+        },
+      },
+    ]).toArray();
+    resOk(res, { cheftInsert });
+  }
 }
