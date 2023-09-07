@@ -1,14 +1,17 @@
 ## Filtro mongodb:  M3 jhon jairo morales garcia
 
-- filtro campus node mongodb
+filtro campus node mongodb
 - antes de usar debe instalar dependencias con ``` npm i```
-
 - debe ejcutar el proyecto ``` npm run dev```
 
+- la api tiene passport jwt bearer y local
+- tiene versionamiento pero solo tiene una version : 1.0.0
+- tiene dto o validaciones 
+- usa express validator 
 
-- #### (solo los usuarios registrados con rol admin pueden usar los endpoints los demas roles no)
+- #### (solo los usuarios registrados con rol admin pueden usar los endpoints, los demas roles no)
 
-- #### si algun endpoint no le bota los datos es por que hay ensertar mas documentos por favor ingreselos para que se peuda ver el filtrado y las consultas de mejor manera
+- #### si algun endpoint no le bota los datos es por que hay insertar mas documentos, por favor ingreselos para que se pueda ver el filtrado y las consultas de mejor manera, no alcance a ingresar mas documentos debido al tiempo (borre las colecciones que tenia para crear el shema de mongo db)
 
 - antes de usar cualquier endpoint debe registrar un usuario en este endpoint ``` localhost:1234/users ``` con su password, email y rol. debe recordar la contraseña ya que se encripta cuando se guarda a la base de datos y no podra verla desde ahi 
 
@@ -155,6 +158,7 @@
         },
         {
             "name": "Encontrar todas las hamburguesas que contienen exactamente 7 ingredientes",
+            "nota": "error de ultima hora y no alance a corregir por tiempo (encuentra por los que tienen 5 ingredientes exactamente)"
             "url": "localhost:1234/chefs/",
             "method": "GET",
         },
