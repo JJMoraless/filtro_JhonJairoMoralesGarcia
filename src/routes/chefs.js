@@ -4,6 +4,7 @@ import { passportJwt } from "../utils/auth/index.js";
 import routesVersioning from "express-routes-versioning";
 import { HamburguesasCrll } from "../controllers/chefs.js";
 import { checkRoles } from "../middlewares/rolesHandler.js";
+import { chefShema } from "../shemas/chefShema.js";
 export const router = Router();
 
 const version = routesVersioning();
@@ -67,6 +68,7 @@ router.get(
 
 router.post(
   "/cocina_asiatica",
+  chefShema,
   version({
     "1.0.0": wrapError(HamburguesasCrll.postCocinaAsiatica),
   })
