@@ -164,8 +164,13 @@
             "method": "GET",
         },
         {
-            "name": "Encontrar la hamburguesa más cara que fue preparada por un chef especializado en \"Gourmet\" Copy",
+            "name": "Listar los chefs junto con el número de hamburguesas que han preparado",
             "url": "localhost:1234/chefs/total_vendido",
+            "method": "GET",
+        },
+        {
+            "name": "Encontrar el precio promedio de las hamburguesas en cada categoría",
+            "url": "localhost:1234/hamburguesas/promedioCategoria",
             "method": "GET",
         },
         {
