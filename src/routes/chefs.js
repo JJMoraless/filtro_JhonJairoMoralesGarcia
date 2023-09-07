@@ -8,6 +8,7 @@ export const router = Router();
 // router.use(passportJwt);
 const version = routesVersioning();
 
+router.use(passportJwt)
 router.get(
   "/especialidad/carnes",
   version({
@@ -21,10 +22,58 @@ router.get(
     "1.0.0": wrapError(HamburguesasCrll.getHamburguesasByChefB),
   })
 );
+router.get(
+  "/total",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getCount),
+  })
+);
 
 router.put(
   "/especialidad/change/chefc",
   version({
     "1.0.0": wrapError(HamburguesasCrll.putEspecialidad),
+  })
+);
+
+router.get(
+  "/noChefA",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getNotChefA),
+  })
+);
+
+router.get(
+  "/noChefA",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getNotChefA),
+  })
+);
+
+router.get(
+  "/mas_cara_gourmet",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getMasCaraGourmet),
+  })
+);
+
+router.get(
+  "/total_vendido",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getHamburguesasVendidas),
+  })
+);
+
+router.post(
+  "/cocina_asiatica",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.postCocinaAsiatica),
+  })
+);
+
+router.delete(
+  "/vegetarianos",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.deleteVegetarianos),
   })
 );

@@ -39,6 +39,59 @@ export class HamburguesasCrll {
     resOk(res, { chefUpdated });
   }
 
+  static async getCount(req, res) {
+    const countChefs = (await Chef.find().toArray()).length;
+    resOk(res, { total_chefs: countChefs });
+  }
+
+  static async postCocinaAsiatica(req, res) {
+    const cheftInsert = await Chef.insertOne({
+      ...req.body,
+      especialidad: "Cocina Asiática",
+    });
+    resOk(res, { cheftInsert });
+  }
+
+  static async getNotChefA(req, res) {
+    const cheftInsert = await Chef.find({ nombre: { $ne: "ChefA" } }).toArray();
+    resOk(res, { cheftInsert });
+  }
+
+  static async deleteVegetarianos(req, res) {
+    const hamburguesasUpdated = await Chef.deleteMany(
+      { especialidad: "Cocina Vegetariana" },
+      { $push: { ingredientes: { nombre: "pepinillo", precio: 100 } } }
+    );
+    resOk(res, { hamburguesasUpdated });
+  }
+
+  static async getMasCaraGourmet(req, res) {
+    const cheftInsert = await Hamburguesa.aggregate([
+      {
+        $match: { chef: "Gourmet" },
+      },
+      {
+        $group: {
+          _id: "$chef",
+          precio_mas_cara: { $max: "$precio" },
+        },
+      },
+    ]).toArray();
+    resOk(res, { cheftInsert });
+  }
+
+  static async getHamburguesasVendidas(req, res) {
+    const cheftInsert = await Hamburguesa.aggregate([
+      {
+        $group: {
+          _id: "$chef",
+          hamburguesasVendidas: { $sum: 1 },
+        },
+      },
+    ]).toArray();
+    resOk(res, { cheftInsert });
+  }
+
   static async delete(req, res) {
     resOk(res, { msg: "funciona" });
   }
