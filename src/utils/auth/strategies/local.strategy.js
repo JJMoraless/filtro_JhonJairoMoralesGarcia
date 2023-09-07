@@ -14,9 +14,8 @@ const localStrategy = new Strategy(
   },
   async (email, password, done) => {
     try {
-
       // buscar por email
-      // const user = 
+      const user = await User.findOne({ email });
       if (!user) {
         throw new ClientError("email not found");
       }
