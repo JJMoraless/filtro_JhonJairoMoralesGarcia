@@ -51,4 +51,99 @@ export class HamburguesasCrll {
     }).toArray();
     resOk(res, { hamburguesas });
   }
+
+  static async getNoChedar(req, res) {
+    const hamburguesas = await Hamburguesa.find({
+      "ingredientes.nombre": { $ne: "queso chedar" },
+    }).toArray();
+
+    resOk(res, { hamburguesas });
+  }
+
+  static async getPrecioLte9(req, res) {
+    const hamburguesas = await Hamburguesa.find({
+      precio: { $lte: 9 },
+    }).toArray();
+
+    resOk(res, { hamburguesas });
+  }
+
+  static async getCategoriesGourmet(req, res) {
+    const hamburguesas = await Hamburguesa.aggregate([
+      {
+        $unwind: "$categoria",
+      },
+      {
+        $project: {
+          categoria: 1,
+        },
+      },
+      {
+        $match: { "categoria.nombre": "gourmet" },
+      },
+    ]).toArray();
+
+    resOk(res, { hamburguesas });
+  }
+
+  static async deleteLess5Ingredientes(req, res) {
+    const hamburguesas = await Hamburguesa.find().toArray();
+    resOk(res, { hamburguesas });
+  }
+
+  static async getOrderByPrice(req, res) {
+    const hamburguesasOrder = await Hamburguesa.find()
+      .sort({ precio: 1 })
+      .toArray();
+    resOk(res, { hamburguesasOrder });
+  }
+
+  static async getTomaeOlechuga(req, res) {
+    const hamburguesasOrder = await Hamburguesa.find({
+      $or: [
+        { "ingredientes.nombre": "tomate" },
+        { "ingredientes.nombre": "lechuga" },
+      ],
+    }).toArray();
+    resOk(res, { hamburguesasOrder });
+  }
+
+  static async putIncrementGourmet(req, res) {
+    const hamburguesasIncrementadas = await Hamburguesa.updateMany(
+      {
+        "categoria.nombre": "gourmet",
+      },
+      { $inc: { precio: 2 } }
+    );
+
+    const hamburguesasFound = await Hamburguesa.find({
+      "categoria.nombre": "gourmet",
+    }).toArray();
+
+    resOk(res, { hamburguesasFound });
+  }
+
+  static async getMasCara(req, res) {
+    const ingredientesFound = await Hamburguesa.find({})
+      .sort({ precio: 1 })
+      .toArray();
+    const max = ingredientesFound[ingredientesFound.length - 1];
+    resOk(res, { hamburguesas_mas_cara: max });
+  }
+
+  static async putPepinillos(req, res) {
+    const hamburguesasUpdated = await Hamburguesa.updateMany(
+      { "categoria.nombre": "clasica" },
+      { $push: { ingredientes: { nombre: "pepinillo", precio: 100 } } }
+    );
+
+    resOk(res, { hamburguesasUpdated });
+  }
+
+  static async get5igredientes(req, res) {
+    const ingredientesFound = await Hamburguesa.find({
+      ingredientes: { $size: 5 },
+    }).toArray();
+    resOk(res, { ingredientesFound });
+  }
 }

@@ -29,10 +29,72 @@ router.put(
   })
 );
 
-
 router.get(
   "/ingredientes/pan_integral",
   version({
     "1.0.0": wrapError(HamburguesasCrll.getIntegral),
+  })
+);
+
+router.get(
+  "/ingredientes/no_chedar",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getNoChedar),
+  })
+);
+
+router.get(
+  "/precio9",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getPrecioLte9),
+  })
+);
+
+router.get(
+  "/categorias/gourmet",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getCategoriesGourmet),
+  })
+);
+
+router.put(
+  "/gourmet/increment2",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.putIncrementGourmet),
+  })
+);
+
+router.get(
+  "/precios/order",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getOrderByPrice),
+  })
+);
+
+router.get(
+  "/tomateOlechuga",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getTomaeOlechuga),
+  })
+);
+
+router.get(
+  "/mas_cara",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.getMasCara),
+  })
+);
+
+router.get(
+  "/5ingredientes",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.get5igredientes),
+  })
+);
+
+router.put(
+  "/pepinillosToClasica",
+  version({
+    "1.0.0": wrapError(HamburguesasCrll.putPepinillos),
   })
 );
