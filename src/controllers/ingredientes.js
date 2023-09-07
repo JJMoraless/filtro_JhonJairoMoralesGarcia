@@ -32,4 +32,48 @@ export class IngredientesCrll {
     const ingredientesDelete = await Ingrediente.deleteMany({ stock: 0 });
     resOk(res, { ingredientesDelete });
   }
+
+  static async getMasCaro(req, res) {
+    const ingredientesFound = await Ingrediente.find({})
+      .sort({ precio: 1 })
+      .toArray();
+    const max = ingredientesFound[ingredientesFound.length - 1];
+    const min = ingredientesFound[0];
+    resOk(res, { ingrediente: max });
+  }
+
+  static async incrementPan100(req, res) {
+    const panUdpated = await Ingrediente.updateOne(
+      { nombre: "pan" },
+      { $inc: { stock: 100 } }
+    );
+    resOk(res, { pan_incrementado: panUdpated });
+  }
+
+  static async getClasico(req, res) {
+    const ingredientesClasicos = await Ingrediente.find({
+      descripccion: "clasico",
+    }).toArray();
+    resOk(res, { ingredientesClasicos });
+  }
+
+  static async getBeetwen2y25(req, res) {
+    const ingredientes = await Ingrediente.find({
+      $and: [{ precio: { $gte: 2 } }, { precio: { $lte: 5 } }],
+    }).toArray();
+    resOk(res, { ingredientes });
+  }
+
+  static async putPanToCrujiente(req, res) {
+    const ingrediente = await Ingrediente.updateOne(
+      { nombre: "pan" },
+      { $set: { descripccion: "crujiente" } }
+    );
+    resOk(res, { ingrediente });
+  }
+
+  static async getOrderAlfa(req, res) {
+    const ingredientes = await Ingrediente.find().sort({ nombre: 1 }).toArray();
+    resOk(res, { ingredientes });
+  }
 }

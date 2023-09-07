@@ -22,6 +22,49 @@ router.get(
   })
 );
 
+router.get(
+  "/precios/masCaro",
+  version({
+    "1.0.0": wrapError(IngredientesCrll.getMasCaro),
+  })
+);
+
+router.get(
+  "/pan/increment",
+  version({
+    "1.0.0": wrapError(IngredientesCrll.incrementPan100),
+  })
+);
+
+router.get(
+  "/clasico",
+  version({
+    "1.0.0": wrapError(IngredientesCrll.getClasico),
+  })
+);
+
+router.get(
+  "/precios/beetwen2y25",
+  version({
+    "1.0.0": wrapError(IngredientesCrll.getBeetwen2y25),
+  })
+);
+
+router.get(
+  "/order_alfabetico",
+  version({
+    "1.0.0": wrapError(IngredientesCrll.getOrderAlfa),
+  })
+);
+
+
+router.put(
+  "/pan/descripcion/to_crugiente",
+  version({
+    "1.0.0": wrapError(IngredientesCrll.putPanToCrujiente),
+  })
+);
+
 router.delete(
   "/deleteStock0",
   version({
