@@ -3,11 +3,13 @@ import { wrapError } from "../middlewares/errorsHandler.js";
 import { passportJwt } from "../utils/auth/index.js";
 import { IngredientesCrll } from "../controllers/ingredientes.js";
 import routesVersioning from "express-routes-versioning";
+import { checkRoles } from "../middlewares/rolesHandler.js";
 
 export const router = Router();
-// router.use(passportJwt);
-const version = routesVersioning();
+router.use(passportJwt);
+router.use(checkRoles("admin"));
 
+const version = routesVersioning();
 router.get(
   "/stock40",
   version({
@@ -56,7 +58,6 @@ router.get(
     "1.0.0": wrapError(IngredientesCrll.getOrderAlfa),
   })
 );
-
 
 router.put(
   "/pan/descripcion/to_crugiente",

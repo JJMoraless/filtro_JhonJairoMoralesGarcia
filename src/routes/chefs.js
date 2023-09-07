@@ -3,12 +3,13 @@ import { wrapError } from "../middlewares/errorsHandler.js";
 import { passportJwt } from "../utils/auth/index.js";
 import routesVersioning from "express-routes-versioning";
 import { HamburguesasCrll } from "../controllers/chefs.js";
-
+import { checkRoles } from "../middlewares/rolesHandler.js";
 export const router = Router();
-// router.use(passportJwt);
+
 const version = routesVersioning();
 
-router.use(passportJwt)
+router.use(passportJwt);
+router.use(checkRoles("admin"));
 router.get(
   "/especialidad/carnes",
   version({
